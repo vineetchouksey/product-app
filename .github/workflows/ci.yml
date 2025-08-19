@@ -53,7 +53,7 @@ jobs:
       - name: Upload production build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: production-files
+          name: github-pages # This name is expected by the deploy-pages action
           path: dist/product-app/browser/ # The path to the built Angular app
 
   # This job handles the deployment to GitHub Pages.
