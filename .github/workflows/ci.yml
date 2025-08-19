@@ -48,3 +48,29 @@ jobs:
       # Step 8: Run E2E tests.
       - name: Run E2E tests
         run: npm run e2e
+
+      # Step 9: Upload the build artifact to be used by the deploy job.
+      - name: Upload production build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: dist/product-app/browser/ # The path to the built Angular app
+
+  # This job handles the deployment to GitHub Pages.
+  deploy:
+    # This job will only run after 'build-and-test' has succeeded.
+    needs: build-and-test
+    # This job will only run on pushes to the 'main' branch, not on pull requests.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    # Grant permissions for the workflow to deploy to GitHub Pages.
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
