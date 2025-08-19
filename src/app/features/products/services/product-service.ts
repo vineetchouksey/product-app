@@ -5,12 +5,13 @@ import {
   ProductInterface,
 } from '../interfaces/product-interface';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'https://dummyjson.com/products';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

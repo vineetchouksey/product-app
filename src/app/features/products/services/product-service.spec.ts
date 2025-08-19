@@ -9,11 +9,12 @@ import {
   AvailabilityStatus,
   ProductInterface,
 } from '../interfaces/product-interface';
+import { environment } from '../../../../environments/environment';
 
 describe('ProductService', () => {
   let service: ProductService;
   let httpTestingController: HttpTestingController;
-  const apiUrl = 'https://dummyjson.com/products';
+  const apiUrl = environment.apiUrl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
