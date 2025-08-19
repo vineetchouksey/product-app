@@ -40,3 +40,11 @@ jobs:
       # Step 5: Build the application for production. This creates the release artifact.
       - name: Build application
         run: npm run build # This typically runs `ng build --configuration production`
+
+      # Step 7: Install Playwright browsers and dependencies for E2E tests.
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # Step 8: Run E2E tests.
+      - name: Run E2E tests
+        run: npm run e2e
