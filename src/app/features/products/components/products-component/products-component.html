@@ -1,0 +1,11 @@
+@if (state$ | async; as state) { @if (state.loading) {
+<p class="text-center">Loading products...</p>
+} @else if (state.error) {
+<div class="p-message p-message-error">{{ state.error }}</div>
+} @else if (state.products.length > 0) {
+<app-product-list-component
+  [products]="state.products"
+></app-product-list-component>
+} @else {
+<p class="text-center">No products found.</p>
+} }

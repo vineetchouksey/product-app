@@ -1,0 +1,41 @@
+<div class="card">
+  <p-table
+    [value]="products"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 5rem"></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Rating</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <img
+            [src]="product.thumbnail"
+            [alt]="product.title"
+            class="product-image"
+          />
+        </td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.price | currency : "USD" }}</td>
+        <td>{{ product.category }}</td>
+        <td>
+          <p-rating [(ngModel)]="product.rating" [readonly]="true"></p-rating>
+        </td>
+        <td>
+          <p-tag
+            [value]="product.availabilityStatus"
+            [severity]="getSeverity(product.availabilityStatus)"
+          ></p-tag>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
