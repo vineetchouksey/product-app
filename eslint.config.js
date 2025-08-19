@@ -38,16 +38,6 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {
-      overrides: [
-        {
-          files: ["*.ts"],
-          rules: {
-            // ... other rules
-            "@angular-eslint/prefer-standalone": "off",
-          },
-        },
-      ],
-    },
+    rules: {},
   }
 );
